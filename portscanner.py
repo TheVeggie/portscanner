@@ -2,20 +2,20 @@ import socket
 import sys
 from datetime import datetime
 
-target = "google.de"
-targetIP = socket.gethostbyname(target)
+target = "" #choose your target
+targetIP = socket.gethostbyname(target) # get ip of target
 
 tstart = datetime.now()
 
 try:
-    for p in range(1, 30):
+    for p in range(0, 65535):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        res = sock.connect_ex((targetIP, p))
-        if res == 0:
-            print("Offene Verbindung in Port " + str(p))
+        result = sock.connect_ex((targetIP, p))
+        if result == 0:
+            print("Port: " + str(p))
         sock.close()
 except Exception:
-    print("There was an error.")
+    print("fail")
     sys.exit()
 
 tend = datetime.now()
